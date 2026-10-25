@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { themeScript } from "@/components/ThemeToggle";
 import { siteUrl } from "@/content/site";
 import "./globals.css";
 
@@ -29,7 +30,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${code.variable} h-full antialiased`}>
+    // data-theme is set by themeScript before React runs: not a mismatch.
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${code.variable} h-full antialiased`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <Header />
         <main className="flex-1">{children}</main>

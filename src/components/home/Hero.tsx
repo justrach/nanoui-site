@@ -43,6 +43,7 @@ export function Hero() {
               alt="The nanoui gallery's Controls page: buttons, toggles, sliders and a text field, drawn by nanoui"
               width={900}
               height={640}
+              eager
               className="block h-auto w-full"
             />
           </WindowFrame>

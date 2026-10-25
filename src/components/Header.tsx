@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { repo } from "@/content/site";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/#native-ui", label: "Native UI" },
@@ -25,9 +26,12 @@ export function Header() {
             </li>
           ))}
         </ul>
+        <div className="ml-auto sm:ml-0">
+          <ThemeToggle />
+        </div>
         <a
           href={repo}
-          className="ml-auto inline-flex items-center gap-2 rounded-full border border-ink px-3.5 py-1.5 text-sm font-medium transition hover:bg-ink hover:text-paper sm:ml-0"
+          className="inline-flex items-center gap-2 rounded-full border border-ink px-3.5 py-1.5 text-sm font-medium transition hover:bg-ink hover:text-paper"
         >
           <GitHubMark />
           GitHub

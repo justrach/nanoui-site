@@ -12,13 +12,16 @@ export function Section({ id, kicker, title, lead, children, className = "" }: {
   );
 }
 
-/** A screenshot in the light or dark appearance, as the reader's system is. */
-export function ThemedShot({ light, dark, alt, className = "", width, height }: { light: string; dark: string; alt: string; className?: string; width?: number; height?: number }) {
+/** A screenshot in the site's theme. Both images are in the page and CSS
+ *  hides one; a hidden lazy image is never fetched. */
+export function ThemedShot({ light, dark, alt, className = "", width, height, eager = false }: { light: string; dark: string; alt: string; className?: string; width?: number; height?: number; eager?: boolean }) {
+  // Eager for the first screen, so a switch of theme shows it at once.
+  const loading = eager ? "eager" : "lazy";
   return (
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcSet={dark} />
-      <img src={light} alt={alt} width={width} height={height} loading="lazy" decoding="async" className={className} />
-    </picture>
+    <>
+      <img src={light} alt={alt} width={width} height={height} loading={loading} decoding="async" className={`${className} dark:hidden`} />
+      <img src={dark} alt={alt} width={width} height={height} loading={loading} decoding="async" className={`${className} hidden dark:block`} />
+    </>
   );
 }
 

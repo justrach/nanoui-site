@@ -1,27 +1,49 @@
 @import "tailwindcss";
 
 /* Nano's print: cream paper, black ink, a cobalt jacket, a window in
-   vermilion and marigold. Dark is the same print with the inks reversed. */
+   vermilion and marigold. Dark is the same print with the inks reversed.
+   <html data-theme> is set before the first paint (layout.tsx) from the
+   reader's choice or their system; without scripts, the system decides. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
-  --paper: #f3ede0;
-  --paper-2: #ebe3d2;
+  --paper: #f7f2e8;
+  --paper-2: #efe8da;
   --ink: #17140f;
-  --ink-2: #4a443a;
-  --ink-3: #7d7566;
-  --rule: #d9cfbb;
+  --ink-2: #474137;
+  --ink-3: #776f60;
+  --rule: #ddd3c0;
   --cobalt: #2347d8;
   --cobalt-ink: #ffffff;
-  --vermilion: #e5482b;
+  --vermilion: #d9401f;
   --marigold: #f4a51c;
-  --card: #fbf8f1;
+  --card: #fffdf8;
   --code-bg: #17140f;
   --code-fg: #ece4d3;
   --shadow: #17140f;
+  --grain: 0.2;
   color-scheme: light;
 }
 
+:root[data-theme="dark"] {
+  --paper: #15130f;
+  --paper-2: #1d1a15;
+  --ink: #f1e9d8;
+  --ink-2: #c4baa6;
+  --ink-3: #8f8676;
+  --rule: #34302a;
+  --cobalt: #5b7cff;
+  --vermilion: #ff6a4d;
+  --marigold: #ffb937;
+  --card: #1c1915;
+  --code-bg: #0e0c0a;
+  --shadow: #000000;
+  color-scheme: dark;
+  --grain: 0.12;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --paper: #15130f;
     --paper-2: #1d1a15;
     --ink: #f1e9d8;
@@ -35,6 +57,7 @@
     --code-bg: #0e0c0a;
     --shadow: #000000;
     color-scheme: dark;
+    --grain: 0.12;
   }
 }
 
@@ -75,16 +98,23 @@ body::before {
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.32;
+  opacity: var(--grain);
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
+[data-theme="dark"] body::before {
+  mix-blend-mode: screen;
+}
 @media (prefers-color-scheme: dark) {
-  body::before {
+  :root:not([data-theme]) body::before {
     mix-blend-mode: screen;
-    opacity: 0.12;
   }
+}
+
+/* A switch of theme happens at once, not as a slow fade of every color. */
+.theme-switching * {
+  transition: none !important;
 }
 
 ::selection {
