@@ -8,14 +8,10 @@ Cloudflare Workers with [OpenNext](https://opennext.js.org/cloudflare).
 bun install
 bun run dev        # http://localhost:3000
 bun run preview    # the Workers build, served locally by Wrangler
-bun run deploy     # to https://nanoui.dev (cf auth login first)
+bun run deploy     # to https://nanoui.dev (wrangler login first)
 ```
 
-`cf` would build a Next.js project with `next build` itself, so the deploy
-script builds for Workers with OpenNext, has Wrangler write that as Build
-Output (`.cloudflare/output/`), and deploys it with `cf deploy --prebuilt`.
-The Worker and its domain are in `cloudflare.config.ts`; `wrangler.jsonc`
-still serves `bun run preview`.
+The Worker and its custom domain are in `wrangler.jsonc`.
 
 - `src/content/site.ts`: everything the home page says, from nanoui's README.
 - `src/content/gallery.ts`: the gallery's shots.
