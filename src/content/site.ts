@@ -4,7 +4,7 @@
 export const repo = "https://github.com/justrach/nanoui";
 
 // Where the site is served, for absolute links in previews (Open Graph).
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nanoui.dev";
 
 export const stats = [
   { value: "~0.7 MB", label: "a release app" },

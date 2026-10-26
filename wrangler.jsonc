@@ -14,6 +14,7 @@
       "service": "nanoui-site"
     }
   ],
+  "routes": [{ "pattern": "nanoui.dev", "custom_domain": true }],
   "observability": {
     "enabled": true
   }

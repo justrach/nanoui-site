@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy": "opennextjs-cloudflare build && wrangler build --experimental-new-config --experimental-cf-build-output && cf deploy --prebuilt",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cf": "^1.0.0-beta.21",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.148.0"
