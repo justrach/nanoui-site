@@ -95,8 +95,8 @@ export const perf = [
 export type App = { name: string; href: string; image: string; alt: string; body: string };
 
 export const apps: App[] = [
-  { name: "nanoterm", href: "https://github.com/justrach/nanoterm", image: "/apps/nanoterm-light.webp", alt: "nanoterm: an agent's answer with a native visual", body: "A terminal of blocks, in the manner of Warp, with a coding agent over ACP, native visuals, a ⌘P launcher and SSH sessions." },
   { name: "nanomon", href: "https://github.com/justrach/nanomon", image: "/apps/nanomon-dark.webp", alt: "nanomon: the overview with cell graphs", body: "An activity monitor with cell graphs of CPU, memory, GPU, disk and network, and a graff bubble that suggests what to quit." },
+  { name: "nanoterm", href: "https://github.com/justrach/nanoterm", image: "/apps/nanoterm-light.webp", alt: "nanoterm: an agent's answer with a native visual", body: "A terminal of blocks, in the manner of Warp, with a coding agent over ACP, native visuals, a ⌘P launcher and SSH sessions." },
   { name: "nanostudio", href: "https://github.com/justrach/nanostudio", image: "/apps/nanostudio-dark.webp", alt: "nanostudio: the editor with a zoom on the timeline", body: "A screen recorder and editor that zooms where you clicked. Every frame, preview and export alike, is a nanoui view." },
   { name: "nanofly", href: "https://github.com/justrach/nanofly", image: "/apps/nanofly.webp", alt: "nanofly: a flight over the Pacific in a sheet of glass", body: "Flights, live, on a map, for iPhone and the Mac. Its map is drawn by ui.canvas; its card is a sheet of Liquid Glass." },
 ];

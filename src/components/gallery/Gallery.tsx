@@ -9,9 +9,9 @@ type Filter = "all" | Shot["kind"];
 
 const filters: { id: Filter; label: string }[] = [
   { id: "all", label: "Everything" },
+  { id: "apps", label: "Apps" },
   { id: "widgets", label: "Widgets" },
   { id: "platforms", label: "Phones" },
-  { id: "apps", label: "Apps" },
 ];
 
 export function Gallery({ shots }: { shots: Shot[] }) {

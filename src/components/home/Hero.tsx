@@ -1,6 +1,8 @@
-import { ButtonLink, ThemedShot, WindowFrame } from "@/components/ui";
+import { ButtonLink, WindowFrame } from "@/components/ui";
 import { GitHubMark } from "@/components/Header";
-import { repo, stats } from "@/content/site";
+import { apps, repo, stats } from "@/content/site";
+
+const featuredApps = apps.filter((app) => app.name === "nanomon" || app.name === "nanoterm");
 
 export function Hero() {
   return (
@@ -21,13 +23,13 @@ export function Hero() {
             in <span className="text-cobalt">Zig</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-            Native UI drawn on the GPU, or a web frontend that calls Zig through a typed client. Single binaries of about 0.7 MB, and an idle app
-            uses no CPU.
+            From nanomon&apos;s live system graphs to nanoterm&apos;s terminal and coding agent. Real apps, with native UI drawn on the GPU
+            or a web frontend that calls Zig through a typed client.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="#get-started">Get started</ButtonLink>
-            <ButtonLink href="/gallery" variant="outline">
-              Browse the gallery
+            <ButtonLink href="#apps" variant="outline">
+              Explore the apps
             </ButtonLink>
             <ButtonLink href={repo} variant="outline">
               <GitHubMark /> Star on GitHub
@@ -36,24 +38,27 @@ export function Hero() {
         </div>
 
         <div className="relative fade-up [animation-delay:120ms]">
-          <WindowFrame title="zig build run-gallery" className="rotate-[2.5deg]">
-            <ThemedShot
-              light="/gallery/gallery-controls-light-sm.webp"
-              dark="/gallery/gallery-controls-dark-sm.webp"
-              alt="The nanoui gallery's Controls page: buttons, toggles, sliders and a text field, drawn by nanoui"
-              width={900}
-              height={640}
-              eager
-              className="block h-auto w-full"
-            />
-          </WindowFrame>
-          <img
-            src="/brand/nano.webp"
-            alt="Nano, nanoui's field mouse craftsperson, in a blue workshop jacket, holding a miniature app window"
-            width={880}
-            height={880}
-            className="absolute -bottom-14 -left-10 w-[42%] drop-shadow-[0_10px_18px_rgba(0,0,0,0.25)] sm:-left-16"
-          />
+          {featuredApps.map((app, i) => (
+            <a
+              key={app.name}
+              href={app.href}
+              aria-label={`Explore ${app.name} on GitHub`}
+              className={`relative block w-[90%] rounded-xl transition hover:z-10 hover:-translate-y-1 focus-visible:z-10 ${i === 0 ? "-rotate-2" : "-mt-16 ml-auto rotate-2"}`}
+            >
+              <WindowFrame title={app.name}>
+                <img
+                  src={app.image}
+                  alt={app.alt}
+                  width={1600}
+                  height={app.name === "nanomon" ? 1106 : 1245}
+                  loading="eager"
+                  decoding="async"
+                  className="block h-auto w-full"
+                />
+              </WindowFrame>
+            </a>
+          ))}
+          <p className="mt-6 text-right font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Real apps. Built on nanoui.</p>
         </div>
       </div>
 
