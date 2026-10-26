@@ -3,9 +3,9 @@ import { repo } from "@/content/site";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { href: "/#native-ui", label: "Native UI" },
-  { href: "/#platforms", label: "Platforms" },
-  { href: "/#apps", label: "Apps" },
+  { href: "/#apps", label: "Desktop" },
+  { href: "/#mobile", label: "Mobile" },
+  { href: "/#get-started", label: "Get started" },
   { href: "/gallery", label: "Gallery" },
 ];
 
@@ -17,7 +17,7 @@ export function Header() {
           <img src="/brand/icon-512.png" alt="" width={28} height={28} className="size-7" />
           <span className="font-display text-lg font-extrabold tracking-tight">nanoui</span>
         </Link>
-        <ul className="ml-auto hidden items-center gap-6 text-sm text-ink-2 sm:flex">
+        <ul className="ml-auto hidden items-center gap-6 text-sm text-ink-2 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="transition hover:text-ink">
@@ -26,7 +26,7 @@ export function Header() {
             </li>
           ))}
         </ul>
-        <div className="ml-auto sm:ml-0">
+        <div className="ml-auto lg:ml-0">
           <ThemeToggle />
         </div>
         <a

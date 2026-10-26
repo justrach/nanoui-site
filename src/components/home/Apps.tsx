@@ -1,66 +1,66 @@
 import { Code } from "@/components/Code";
 import { ButtonLink, Section } from "@/components/ui";
-import { apps, getStarted, nuiCode } from "@/content/site";
+import { apps, nuiCode, repo } from "@/content/site";
+
+const desktopApps = apps.filter((app) => app.name === "nanomon" || app.name === "nanoterm");
 
 export function Apps() {
   return (
-    <Section id="apps" kicker="06 · Apps" title="Built on nanoui." lead="Real apps, each in its own repository and each a single binary.">
-      <div className="grid gap-6 sm:grid-cols-2">
-        {apps.map((a, i) => (
+    <Section id="apps" kicker="01 · Desktop" title="At home on your desktop." lead="Live system graphs in nanomon. A terminal, coding agent and native visuals in nanoterm.">
+      <div className="grid gap-6 md:grid-cols-2">
+        {desktopApps.map((app) => (
           <a
-            key={a.name}
-            href={a.href}
-            className={`group overflow-hidden rounded-2xl border border-ink/80 bg-card print-shadow transition hover:-translate-y-1 ${i % 2 ? "sm:translate-y-8 sm:hover:translate-y-7" : ""}`}
+            key={app.name}
+            href={app.href}
+            className="group overflow-hidden rounded-2xl border border-ink/80 bg-card print-shadow transition hover:-translate-y-1"
           >
-            <div className="aspect-[16/10] overflow-hidden border-b border-ink/80 bg-paper-2">
+            <div className="aspect-[16/11] overflow-hidden border-b border-ink/80 bg-paper-2">
               <img
-                src={a.image}
-                alt={a.alt}
-                loading="lazy"
+                src={app.image}
+                alt={app.alt}
+                width={1600}
+                height={app.name === "nanomon" ? 1106 : 1245}
+                loading="eager"
                 decoding="async"
-                className={`h-full w-full transition duration-500 group-hover:scale-[1.03] ${a.name === "nanofly" ? "object-contain p-3" : "object-cover object-top"}`}
+                className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.02]"
               />
             </div>
             <div className="p-6">
               <h3 className="font-display text-2xl font-extrabold tracking-tight">
-                {a.name} <span className="inline-block text-cobalt transition group-hover:translate-x-1">→</span>
+                {app.name} <span className="inline-block text-cobalt transition group-hover:translate-x-1">→</span>
               </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{a.body}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{app.body}</p>
             </div>
           </a>
         ))}
       </div>
+      <p className="mt-8 text-sm leading-relaxed text-ink-2">
+        There&apos;s more: <a href="https://github.com/justrach/nanostudio" className="font-semibold text-ink underline decoration-cobalt underline-offset-4">nanostudio</a> is
+        a screen recorder and editor built on the same toolkit. <a href="/gallery" className="font-semibold text-cobalt underline underline-offset-4">See the full showcase →</a>
+      </p>
     </Section>
   );
 }
 
 export function GetStarted() {
   return (
-    <Section
-      id="get-started"
-      kicker="07 · Get started"
-      title="Clone it, and the tour is one command."
-      lead="You need Zig 0.17.0, plus the macOS SDK on a Mac. Linux apps need GTK 3 at run time and nothing at build time."
-    >
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div>
-          <Code code={getStarted} lang="sh" title="terminal" />
-        </div>
-        <div>
-          <Code code={nuiCode} lang="sh" title="a new app with nui" />
-          <p className="mt-5 text-[15px] leading-relaxed text-ink-2">
-            <code className="font-mono text-ink">nui</code> makes an app that builds, and checks it without opening a window, for people and coding
-            agents alike. It never asks anything, and every command takes <code className="font-mono text-ink">--json</code>.
+    <Section id="get-started" kicker="03 · Your turn" title="Now build your own." lead="Start with a small Zig app. Take it to the screen you have in mind.">
+      <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div className="min-w-0">
+          <p className="text-lg leading-relaxed text-ink-2">
+            Install <code className="font-mono text-ink">nui</code> from the latest release and use Zig 0.17. The CLI creates a project,
+            tests it without opening a window, and captures a screenshot when you need one.
           </p>
+          <p className="mt-4 text-[15px] leading-relaxed text-ink-2">
+            iOS builds need Xcode&apos;s SDK; Android builds need the Android SDK and NDK. The setup guide covers each platform.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ButtonLink href={`${repo}/releases`}>Get nui</ButtonLink>
+            <ButtonLink href={`${repo}#readme`} variant="outline">Read the setup guide</ButtonLink>
+          </div>
         </div>
-      </div>
-      <div className="mt-16 flex flex-col items-center gap-6 rounded-3xl border border-ink/80 bg-cobalt px-6 py-14 text-center text-cobalt-ink print-shadow">
-        <img src="/brand/nano.webp" alt="" width={880} height={880} className="w-32 -rotate-6" />
-        <p className="max-w-xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">See every widget drawn by nanoui.</p>
-        <div className="[&_a]:border-white">
-          <ButtonLink href="/gallery" variant="outline">
-            Open the gallery
-          </ButtonLink>
+        <div className="min-w-0">
+          <Code code={nuiCode} lang="sh" title="a new app with nui" />
         </div>
       </div>
     </Section>

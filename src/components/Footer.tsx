@@ -11,8 +11,8 @@ export function Footer() {
             <span className="font-display text-2xl font-extrabold tracking-tight">nanoui</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-2">
-            Desktop apps in Zig, with native UI drawn on the GPU or a web frontend. MIT licensed. Meet Nano, its field mouse
-            craftsperson.
+            Desktop and mobile apps in Zig. One UI toolkit for macOS, Windows, Linux, iOS and Android. MIT licensed.
+            Meet Nano, its field mouse craftsperson.
           </p>
         </div>
         <div>

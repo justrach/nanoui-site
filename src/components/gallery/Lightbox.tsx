@@ -2,12 +2,12 @@
 
 import { type ReactNode, useEffect, useRef } from "react";
 import type { Shot } from "@/content/gallery";
-import { ShotImage, type Mode } from "./ShotImage";
+import { ShotImage } from "./ShotImage";
 
-type Props = { shots: Shot[]; index: number; mode: Mode; onIndex: (i: number) => void; onClose: () => void };
+type Props = { shots: Shot[]; index: number; onIndex: (i: number) => void; onClose: () => void };
 
 /** One shot, large, over the page: arrows move through them, Escape closes. */
-export function Lightbox({ shots, index, mode, onIndex, onClose }: Props) {
+export function Lightbox({ shots, index, onIndex, onClose }: Props) {
   const s = shots[index];
   const dialog = useRef<HTMLDialogElement>(null);
   const go = (d: number) => onIndex((index + d + shots.length) % shots.length);
@@ -39,7 +39,7 @@ export function Lightbox({ shots, index, mode, onIndex, onClose }: Props) {
           {s.video ? (
             <video key={s.id} src={s.video} poster={s.src} controls autoPlay muted loop playsInline className="max-h-[78vh] w-auto" />
           ) : (
-            <ShotImage key={`${s.id}-${mode}`} shot={s} mode={mode} eager className="max-h-[78vh] w-auto" />
+            <ShotImage key={s.id} shot={s} eager className="max-h-[78vh] w-auto" />
           )}
         </div>
         <figcaption className="flex items-center gap-4 border-t border-ink/80 px-5 py-4">

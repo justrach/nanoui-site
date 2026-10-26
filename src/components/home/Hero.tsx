@@ -1,75 +1,38 @@
-import { ButtonLink, WindowFrame } from "@/components/ui";
+import { ButtonLink } from "@/components/ui";
 import { GitHubMark } from "@/components/Header";
-import { apps, repo, stats } from "@/content/site";
-
-const featuredApps = apps.filter((app) => app.name === "nanomon" || app.name === "nanoterm");
+import { repo } from "@/content/site";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* The print's two color plates, off the page's edge. */}
       <div aria-hidden className="absolute -right-40 -top-32 size-[520px] rounded-full bg-marigold/25 blur-3xl dark:bg-marigold/10" />
-      <div aria-hidden className="absolute -left-40 top-64 size-[420px] rounded-full bg-cobalt/15 blur-3xl dark:bg-cobalt/20" />
+      <div aria-hidden className="absolute -left-40 top-40 size-[420px] rounded-full bg-cobalt/15 blur-3xl dark:bg-cobalt/20" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-10 pt-16 md:grid-cols-[1.1fr_1fr] md:pt-24">
+      <div className="relative mx-auto max-w-6xl px-5 pb-4 pt-14 text-center sm:pt-20">
         <div className="fade-up">
           <p className="inline-flex items-center gap-2 rounded-full border border-ink/70 bg-card px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em]">
             <span className="size-1.5 rounded-full bg-vermilion" />
-            Zig 0.17 · MIT · macOS, iOS, Android, Linux, Windows
+            Zig 0.17 · MIT · One UI toolkit
           </p>
-          <h1 className="misprint mt-6 font-display text-[clamp(3rem,8vw,6.2rem)] font-extrabold leading-[0.92] tracking-[-0.03em]">
-            Desktop apps
+          <h1 className="misprint mt-6 font-display text-[clamp(2.75rem,7.5vw,6.2rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
+            Apps in Zig.
             <br />
-            in <span className="text-cobalt">Zig</span>.
+            <span className="text-cobalt">Desktop to pocket.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-            From nanomon&apos;s live system graphs to nanoterm&apos;s terminal and coding agent. Real apps, with native UI drawn on the GPU
-            or a web frontend that calls Zig through a typed client.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+            A system monitor. A terminal with a coding agent. A flight tracker on your phone. See what people are building with nanoui,
+            then make something of your own.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="#get-started">Get started</ButtonLink>
-            <ButtonLink href="#apps" variant="outline">
-              Explore the apps
-            </ButtonLink>
-            <ButtonLink href={repo} variant="outline">
-              <GitHubMark /> Star on GitHub
-            </ButtonLink>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <ButtonLink href="#apps">Explore the apps</ButtonLink>
+            <ButtonLink href="#get-started" variant="outline">Build your own</ButtonLink>
+            <ButtonLink href={repo} variant="outline"><GitHubMark /> GitHub</ButtonLink>
           </div>
-        </div>
-
-        <div className="relative fade-up [animation-delay:120ms]">
-          {featuredApps.map((app, i) => (
-            <a
-              key={app.name}
-              href={app.href}
-              aria-label={`Explore ${app.name} on GitHub`}
-              className={`relative block w-[90%] rounded-xl transition hover:z-10 hover:-translate-y-1 focus-visible:z-10 ${i === 0 ? "-rotate-2" : "-mt-16 ml-auto rotate-2"}`}
-            >
-              <WindowFrame title={app.name}>
-                <img
-                  src={app.image}
-                  alt={app.alt}
-                  width={1600}
-                  height={app.name === "nanomon" ? 1106 : 1245}
-                  loading="eager"
-                  decoding="async"
-                  className="block h-auto w-full"
-                />
-              </WindowFrame>
-            </a>
-          ))}
-          <p className="mt-6 text-right font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Real apps. Built on nanoui.</p>
+          <ul aria-label="Supported platforms" className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
+            {["macOS", "Windows", "Linux", "iOS", "Android"].map((platform) => <li key={platform}>{platform}</li>)}
+          </ul>
         </div>
       </div>
-
-      <dl className="relative mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-px overflow-hidden border-y border-rule bg-rule px-0 md:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="bg-paper px-5 py-6">
-            <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">{s.label}</dt>
-            <dd className="mt-1 font-display text-4xl font-extrabold tracking-tight">{s.value}</dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }

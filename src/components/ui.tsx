@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 /** A section of a page, with an anchor, a kicker and a heading. */
 export function Section({ id, kicker, title, lead, children, className = "" }: { id?: string; kicker: string; title: ReactNode; lead?: ReactNode; children: ReactNode; className?: string }) {
   return (
-    <section id={id} className={`mx-auto max-w-6xl scroll-mt-20 px-5 pt-24 ${className}`}>
+    <section id={id} className={`mx-auto max-w-6xl scroll-mt-20 px-5 pt-16 sm:pt-20 ${className}`}>
       <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-vermilion">{kicker}</p>
       <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl">{title}</h2>
       {lead && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">{lead}</p>}

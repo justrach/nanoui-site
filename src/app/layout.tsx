@@ -10,11 +10,11 @@ const display = Bricolage_Grotesque({ variable: "--nf-display", subsets: ["latin
 const body = Geist({ variable: "--nf-body", subsets: ["latin"] });
 const code = Geist_Mono({ variable: "--nf-code", subsets: ["latin"] });
 
-const description = "Desktop apps in Zig, with native UI drawn on the GPU or a web frontend. Apps of about 0.7 MB for macOS, iOS, Android, Linux and Windows.";
+const description = "Desktop and mobile apps in Zig. Explore nanomon, nanoterm, nanofly, and nanoui on iOS and Android, then build your own app for five platforms.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "nanoui: desktop apps in Zig", template: "%s · nanoui" },
+  title: { default: "nanoui: desktop and mobile apps in Zig", template: "%s · nanoui" },
   description,
   icons: { icon: "/brand/icon-512.png", apple: "/brand/apple-icon.png" },
   openGraph: { title: "nanoui", description, images: ["/brand/nano-paper.webp"], type: "website" },

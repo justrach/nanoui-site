@@ -1,36 +1,20 @@
-// The gallery leads with real apps, followed by the gallery example's pages,
-// snapshotted offscreen in light and dark, and nanoui on phones.
-
+// Real desktop apps and mobile apps/examples, grouped by the screen shown.
 export type Shot = {
   id: string;
   title: string;
   caption: string;
-  kind: "widgets" | "platforms" | "apps";
-  // Pages drawn in both appearances have /gallery/<id>-<mode>.webp. A tall
-  // shot (a phone) is shown whole in its card, not cropped.
-  themed?: boolean;
-  src?: string;
+  kind: "desktop" | "ios" | "android";
+  src: string;
   video?: string;
+  // Portrait screens are shown whole in their cards, not cropped.
   tall?: boolean;
 };
 
 export const shots: Shot[] = [
-  { id: "nanomon", kind: "apps", src: "/apps/nanomon-dark.webp", title: "nanomon", caption: "An activity monitor with live cell graphs of CPU, memory, GPU, disk and network, and a graff assistant that suggests what to quit." },
-  { id: "nanoterm", kind: "apps", src: "/apps/nanoterm-light.webp", title: "nanoterm", caption: "A terminal of blocks with a coding agent and native visuals." },
-  { id: "nanostudio", kind: "apps", src: "/apps/nanostudio-dark.webp", title: "nanostudio", caption: "A screen recorder and editor; every frame is a nanoui view." },
-  { id: "nanofly", kind: "apps", src: "/apps/nanofly.webp", tall: true, title: "nanofly", caption: "Live flights on a map drawn by ui.canvas, under a sheet of Liquid Glass." },
-  { id: "gallery-controls", kind: "widgets", themed: true, title: "Controls", caption: "Buttons, toggles, sliders and a text field." },
-  { id: "gallery-kit", kind: "widgets", themed: true, title: "Kit", caption: "Buttons in every variant and size, tags, avatars, alerts, progress." },
-  { id: "gallery-glass", kind: "widgets", themed: true, title: "Liquid Glass", caption: "A toolbar of glass over cards, a tinted button and a pane of clear glass." },
-  { id: "gallery-motion", kind: "widgets", themed: true, title: "Motion", caption: "Springs, a staggered list, easings and a toast that comes and goes." },
-  { id: "gallery-tasks", kind: "widgets", themed: true, title: "Tasks", caption: "A task list: type, add, check off and remove, with what's left counted." },
-  { id: "gallery-list", kind: "widgets", themed: true, title: "List", caption: "10 000 rows filtered as you type; a virtual list builds only those in view." },
-  { id: "gallery-typography", kind: "widgets", themed: true, title: "Typography", caption: "Titles, body, monospace, Unicode, and text that wraps to its box." },
-  { id: "ios", kind: "platforms", video: "/apps/ios-gallery.mp4", src: "/apps/ios-gallery-poster.webp", tall: true, title: "iOS", caption: "The same Zig view on an iPhone, pushing its pages from a list. The app played this itself with --nanoui-play." },
-  { id: "android", kind: "platforms", src: "/apps/android-gallery.webp", title: "Android", caption: "The gallery on an Android phone: its pages, the task list with the keyboard up, and dark mode." },
+  { id: "nanomon", kind: "desktop", src: "/apps/nanomon-dark.webp", title: "nanomon", caption: "An activity monitor with live cell graphs of CPU, memory, GPU, disk and network, and a graff assistant that suggests what to quit." },
+  { id: "nanoterm", kind: "desktop", src: "/apps/nanoterm-light.webp", title: "nanoterm", caption: "A terminal of blocks with a coding agent and native visuals." },
+  { id: "nanofly", kind: "ios", src: "/apps/nanofly.webp", tall: true, title: "nanofly", caption: "An iPhone flight tracker with live flights, weather radar and a map under a sheet of Liquid Glass. Also available on Mac." },
+  { id: "ios", kind: "ios", video: "/apps/ios-gallery.mp4", src: "/apps/ios-gallery-poster.webp", tall: true, title: "iOS app tour", caption: "The nanoui demo app on iPhone: touch navigation and the same Zig views on a small screen. Play the video to take a tour." },
+  { id: "android", kind: "android", src: "/apps/android-gallery.webp", title: "Android demo", caption: "The nanoui demo app on Android: navigation, a task list with the software keyboard, and a scrolling list in dark mode." },
+  { id: "nanostudio", kind: "desktop", src: "/apps/nanostudio-dark.webp", title: "nanostudio", caption: "A screen recorder and editor; every frame is a nanoui view." },
 ];
-
-export function shotSrc(s: Shot, mode: "light" | "dark", small = false): string {
-  if (s.themed) return `/gallery/${s.id}-${mode}${small ? "-sm" : ""}.webp`;
-  return s.src ?? "";
-}
