@@ -146,16 +146,56 @@ body::before {
 .tok-builtin { color: #d9a6ff; }
 .tok-field { color: #ece4d3; opacity: 0.85; }
 
-.fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+/* One motion language: a short rise into place, then a tactile lift. */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up,
+  .hero-enter > * {
+    animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-enter > :nth-child(2) { animation-delay: 70ms; }
+  .hero-enter > :nth-child(3) { animation-delay: 140ms; }
+  .hero-enter > :nth-child(4) { animation-delay: 210ms; }
+  .hero-enter > :nth-child(5) { animation-delay: 280ms; }
+  .hero-enter > :focus-within { animation: none; }
+
+  .motion-card,
+  .motion-button {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease;
+  }
+  .motion-card img { transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .motion-arrow { transition: transform 220ms ease; }
+  .motion-button:active { transform: translate(2px, 2px); box-shadow: none; }
+  .lightbox-enter[open] { animation: lightbox-in 260ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .shot-enter { animation: shot-in 200ms ease-out; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .motion-card:hover { transform: translateY(-4px); box-shadow: 8px 10px 0 var(--shadow); }
+  .motion-card:hover img { transform: scale(1.015); }
+  .motion-card:hover .motion-arrow { transform: translateX(4px); }
+  .motion-button:hover:not(:active) { transform: translateY(-2px); }
+}
+
+.motion-card:focus-visible,
+.motion-button:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 5px;
 }
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
 }
+@keyframes lightbox-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes shot-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up { animation: none; }
   html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Shot } from "@/content/gallery";
+import { Reveal } from "@/components/Reveal";
 import { ShotImage } from "./ShotImage";
 import { Lightbox } from "./Lightbox";
 
@@ -39,17 +40,17 @@ export function Gallery({ shots }: { shots: Shot[] }) {
       </div>
 
       {/* A grid, not CSS columns: Chrome may never load lazy images in a column past the first. */}
-      <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Reveal as="ul" stagger replayKey={filter} className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((s, i) => (
           <li key={s.id} id={s.id} className="scroll-mt-40">
             <button
               onClick={() => setOpen(i)}
-              className="group block h-full w-full overflow-hidden rounded-2xl border border-ink/80 bg-card text-left print-shadow-sm transition hover:-translate-y-1 hover:print-shadow"
+              className="motion-card group block h-full w-full overflow-hidden rounded-2xl border border-ink/80 bg-card text-left print-shadow-sm"
             >
               <div className="relative aspect-[45/32] overflow-hidden border-b border-ink/80 bg-paper-2">
                 <ShotImage
                   shot={s}
-                  className={`h-full w-full transition duration-500 group-hover:scale-[1.025] ${s.tall ? "object-contain p-3" : "object-cover object-top"}`}
+                  className={`h-full w-full ${s.tall ? "object-contain p-3" : "object-cover object-top"}`}
                 />
                 {s.video && (
                   <span className="absolute bottom-3 right-3 rounded-full border border-ink bg-card px-2.5 py-1 font-mono text-[11px] print-shadow-sm">▶ video</span>
@@ -65,7 +66,7 @@ export function Gallery({ shots }: { shots: Shot[] }) {
             </button>
           </li>
         ))}
-      </ul>
+      </Reveal>
 
       {open !== null && <Lightbox shots={shown} index={open} onIndex={setOpen} onClose={() => setOpen(null)} />}
     </>

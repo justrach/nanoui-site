@@ -31,11 +31,11 @@ export function Lightbox({ shots, index, onIndex, onClose }: Props) {
       ref={dialog}
       onClose={onClose}
       onClick={(e) => e.target === dialog.current && dialog.current?.close()}
-      className="m-auto max-h-[94vh] w-[min(1200px,94vw)] overflow-visible bg-transparent p-0 backdrop:bg-[#17140f]/80 backdrop:backdrop-blur-sm"
+      className="lightbox-enter m-auto max-h-[94vh] w-[min(1200px,94vw)] overflow-visible bg-transparent p-0 backdrop:bg-[#17140f]/80 backdrop:backdrop-blur-sm"
       aria-label={s.title}
     >
       <figure className="overflow-hidden rounded-2xl border border-ink bg-card text-ink">
-        <div className="grid max-h-[78vh] place-items-center overflow-auto bg-paper-2">
+        <div key={s.id} className="shot-enter grid max-h-[78vh] place-items-center overflow-auto bg-paper-2">
           {s.video ? (
             <video key={s.id} src={s.video} poster={s.src} controls autoPlay muted loop playsInline className="max-h-[78vh] w-auto" />
           ) : (

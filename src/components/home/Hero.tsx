@@ -9,7 +9,7 @@ export function Hero() {
       <div aria-hidden className="absolute -left-40 top-40 size-[420px] rounded-full bg-cobalt/15 blur-3xl dark:bg-cobalt/20" />
 
       <div className="relative mx-auto max-w-6xl px-5 pb-4 pt-14 text-center sm:pt-20">
-        <div className="fade-up">
+        <div className="hero-enter">
           <p className="inline-flex items-center gap-2 rounded-full border border-ink/70 bg-card px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em]">
             <span className="size-1.5 rounded-full bg-vermilion" />
             Zig 0.17 · MIT · One UI toolkit

@@ -1,12 +1,15 @@
 import type { ReactNode } from "react";
+import { Reveal } from "./Reveal";
 
 /** A section of a page, with an anchor, a kicker and a heading. */
 export function Section({ id, kicker, title, lead, children, className = "" }: { id?: string; kicker: string; title: ReactNode; lead?: ReactNode; children: ReactNode; className?: string }) {
   return (
     <section id={id} className={`mx-auto max-w-6xl scroll-mt-20 px-5 pt-16 sm:pt-20 ${className}`}>
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-vermilion">{kicker}</p>
-      <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl">{title}</h2>
-      {lead && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">{lead}</p>}
+      <Reveal>
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-vermilion">{kicker}</p>
+        <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl">{title}</h2>
+        {lead && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">{lead}</p>}
+      </Reveal>
       <div className="mt-12">{children}</div>
     </section>
   );
@@ -41,11 +44,11 @@ export function WindowFrame({ children, title, className = "" }: { children: Rea
 }
 
 export function ButtonLink({ href, children, variant = "primary" }: { href: string; children: ReactNode; variant?: "primary" | "outline" }) {
-  const base = "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition active:translate-x-[2px] active:translate-y-[2px]";
+  const base = "motion-button inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold";
   const look =
     variant === "primary"
-      ? "border border-ink bg-cobalt text-cobalt-ink print-shadow-sm hover:-translate-y-0.5"
-      : "border border-ink bg-card text-ink print-shadow-sm hover:-translate-y-0.5";
+      ? "border border-ink bg-cobalt text-cobalt-ink print-shadow-sm"
+      : "border border-ink bg-card text-ink print-shadow-sm";
   return (
     <a href={href} className={`${base} ${look}`}>
       {children}
